@@ -23,6 +23,15 @@ spring:
                 - name: AuthenticationFilter
                   args:
                     requiredRole: PRODUCER
+            
+            - id: order-server
+              uri: lb://order-server
+              predicates:
+                - Path=/api/v1/order/**
+              filters:
+                - name: AuthenticationFilter
+                  args:
+                    requiredRole: CONSUMER
                     
           discovery:
             locator:
