@@ -7,7 +7,7 @@ spring:
 
   cloud:
     gateway:
-      server:
+      
         routes:
           - id: auth-server
             uri: lb://auth-server
@@ -17,11 +17,12 @@ spring:
               - name: AuthenticationFilter
                 args: 
                   requiredRole: PRODUCER
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lowerCaseServiceId: true
+        server:
+          webflux:
+            discovery:
+              locator:
+                enabled: true
+                lowerCaseServiceId: true
 
 
 
