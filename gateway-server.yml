@@ -37,6 +37,15 @@ spring:
                 - name: AuthenticationFilter
                   args:
                     requiredRole: CONSUMER
+            
+            - id: payment-server
+              uri: lb://payment-server
+              predicates:
+                - Path=/api/v1/payment/**
+              filters:
+                - name: AuthenticationFilter
+                  args:
+                    requiredRole: CONSUMER
                     
           discovery:
             locator:
