@@ -14,16 +14,26 @@ spring:
               uri: lb://auth-server
               predicates:
                 - Path=/api/v1/auth/**
-              # filters:
-              #   - name: AuthenticationFilter
-              #     args: 
-              #       requiredRole: PRODUCER
+            
+            - id: product-server
+              uri: lb://product-server
+              predicates:
+                - Path=/api/v1/product/**
+              filters:
+                - name: AuthenticationFilter
+                  args:
+                    requiredRole: PRODUCER
+                    
           discovery:
             locator:
               enabled: true
               lowerCaseServiceId: true
 
-
+# Uncomment the following lines if you want to use a custom filter  
+              # filters:
+              #   - name: AuthenticationFilter
+              #     args: 
+              #       requiredRole: PRODUCER
 
 eureka:
   client:
